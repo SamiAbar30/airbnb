@@ -1,26 +1,39 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Cereal;
+  src: url("../assets/font/AirbnbCereal_light.otf"),
+    url(../assets/font/AirbnbCereal_normal.otf),
+    url(../assets/font/AirbnbCereal_medium.otf),
+    url(../assets/font/AirbnbCereal_bold.otf),
+    url(../assets/font/AirbnbCereal_extra_bold.otf);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   html {
-    color-scheme: dark;
+    font-family: Cereal, system-ui, sans-serif;
   }
-  body {
-    color: white;
-    background: black;
+}
+
+@layer components {
+  .filter-button {
+    @apply transform cursor-pointer rounded-full border px-4 py-2 text-center text-sm font-semibold text-gray-800 text-opacity-80 shadow-md transition duration-150 ease-in-out hover:scale-105 active:scale-95;
   }
+  .guest-input-button {
+    @apply h-7 w-7 cursor-pointer rounded-full text-airbnb text-opacity-75 transition duration-200 ease-in-out hover:scale-125 hover:text-opacity-90 active:scale-90;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
