@@ -5,7 +5,7 @@ import {
 	UsersIcon,
 	Bars4Icon,
 } from '@heroicons/react/24/solid';
-import {GlobeAltIcon} from '@heroicons/react/24/outline';
+import { GlobeAltIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -21,10 +21,10 @@ function Header() {
 		endDate: endDate,
 		key: 'selection',
 	};
-	const handleSelect=(ranges)=>{
-		setStartDate(ranges.selection.startDate)
-		setStartDate(ranges.selection.endDate)
-	}
+	const handleSelect = (ranges) => {
+		setStartDate(ranges.selection.startDate);
+		setEndDate(ranges.selection.endDate);
+	};
 	return (
 		<header
 			className='sticky top-0 z-50 grid grid-cols-3
@@ -60,14 +60,42 @@ function Header() {
 			</div>
 			{searchInput && (
 				<div className='flex flex-col col-span-3 mx-auto mt-2'>
-					<DateRangePicker ranges={[selectionRange]} onChange={handleSelect} minDate={new Date()} rangeColors={["#FD5B61"]}/>
+					<DateRangePicker
+						ranges={[selectionRange]}
+						onChange={handleSelect}
+						minDate={new Date()}
+						rangeColors={['#FD5B61']}
+					/>
 					<div className='flex items-center border-b mb-4'>
-						<h2 className='text-2xl flex-grow font-semibold'>Number of Guests</h2>
+						<h2 className='text-2xl flex-grow font-semibold'>
+							Number of Guests
+						</h2>
 						<UsersIcon className='h-5 ' />
-						<input type="number" value={noOfGuests} className='w-12 pl-2 text-lg outline-none text-red-400' />
+						<input
+							type='number'
+							value={noOfGuests}
+							min={1}
+							className='w-12 pl-2 text-lg outline-none text-red-400'
+							onChange={(e) => {
+								setNoOfGuests(e.target.value);
+							}}
+						/>
+					</div>
+					<div className='flex '>
+						<button
+							className='flex-grow text-gray-500'
+							onClick={() => {
+								setSearchInput('');
+								setStartDate(new Date());
+								setEndDate(new Date());
+							}}>
+							Cancel
+						</button>
+						<button className='flex-grow text-red-400' onClick={() => {}}>
+							Search
+						</button>
 					</div>
 				</div>
-
 			)}
 		</header>
 	);
