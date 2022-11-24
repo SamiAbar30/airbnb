@@ -10,12 +10,15 @@ import { useState } from 'react';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
+import { useRouter } from 'next/router';
 
-function Header() {
+function Header(props) {
+	const {placeholder}=props;
 	const [searchInput, setSearchInput] = useState('');
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
 	const [noOfGuests, setNoOfGuests] = useState(1);
+	const router=useRouter()
 	const selectionRange = {
 		startDate: startDate,
 		endDate: endDate,
@@ -25,12 +28,25 @@ function Header() {
 		setStartDate(ranges.selection.startDate);
 		setEndDate(ranges.selection.endDate);
 	};
+	const search=()=>{
+		router.push({
+			pathname:'/search',
+			query:{
+				location:searchInput,
+				startDate:startDate.toISOString(),
+				endDate:endDate.toISOString(),
+				noOfGuests,
+			}
+		})
+	}
 	return (
 		<header
 			className='sticky top-0 z-50 grid grid-cols-3
     bg-white shadow-md py-5 px-5 md:px-10 
     '>
-			<div className='relative flex item-center h-10 cursor-pointer'>
+			<div onClick={()=>{
+				router.push('/')
+			}} className='relative flex item-center h-10 cursor-pointer'>
 				<Image
 					src='https://links.papareact.com/qd3'
 					layout='fill'
@@ -43,7 +59,7 @@ function Header() {
 					value={searchInput}
 					type='text'
 					className='flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400 '
-					placeholder='Start your search'
+					placeholder={placeholder || 'Start your search'}
 					onChange={(e) => {
 						setSearchInput(e.target.value);
 					}}
@@ -59,13 +75,17 @@ function Header() {
 				</div>
 			</div>
 			{searchInput && (
+				
 				<div className='flex flex-col col-span-3 mx-auto mt-2'>
-					<DateRangePicker
+				
+				<DateRangePicker
 						ranges={[selectionRange]}
 						onChange={handleSelect}
 						minDate={new Date()}
 						rangeColors={['#FD5B61']}
 					/>
+				
+					
 					<div className='flex items-center border-b mb-4'>
 						<h2 className='text-2xl flex-grow font-semibold'>
 							Number of Guests
@@ -91,7 +111,7 @@ function Header() {
 							}}>
 							Cancel
 						</button>
-						<button className='flex-grow text-red-400' onClick={() => {}}>
+						<button onClick={search} className='flex-grow text-red-400' >
 							Search
 						</button>
 					</div>
