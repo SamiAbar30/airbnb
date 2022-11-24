@@ -2,12 +2,14 @@ import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import InfoCard from '../../components/InfoCard';
 
 function index({ searchResults }) {
 	const router = useRouter();
 	const { location, startDate, endDate, noOfGuests } = router.query;
+	console.log('startDate', startDate, 'endDate', endDate);
 	const formattedStartDate = format(new Date(startDate), 'dd MMMM yy');
-	const formattedEndtDate = format(new Date(endDate), 'dd MMMM yy');
+	const formattedEndtDate =	format(new Date(endDate), 'dd MMMM yy');
 	const range = `${formattedStartDate} - ${formattedEndtDate}`;
 	return (
 		<div>
@@ -32,13 +34,21 @@ function index({ searchResults }) {
 								{item}
 							</p>
 						))}
-						<div className='flex-column'>
-							{searchResults.map(
-								({ img, location, title, description, star, price, total }) => (
-									<InfoCard img location title description star price total />
-								),
-							)}
-						</div>
+					</div>
+					<div className='flex-column'>
+						{searchResults?.map(
+							({ img, location, title, description, star, price, total }) => (
+								<InfoCard
+									img={img}
+									location={location}
+									title={title}
+									description={description}
+									star={star}
+									price={price}
+									total={total}
+								/>
+							),
+						)}
 					</div>
 				</section>
 			</main>
@@ -49,7 +59,7 @@ function index({ searchResults }) {
 
 export default index;
 
-async function getServerSideProps() {
+export async function getServerSideProps() {
 	const searchResults = await fetch('https://www.jsonkeeper.com/b/5NPS').then(
 		(res) => res.json(),
 	);
