@@ -95,7 +95,7 @@ function Header(props) {
 							type='number'
 							value={noOfGuests}
 							min={1}
-							className='w-12 pl-2 text-lg outline-none text-red-400'
+							className='w-12 pl-2 text-lg outline-none text-red-400 overflow'
 							onChange={(e) => {
 								setNoOfGuests(e.target.value);
 							}}
