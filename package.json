@@ -12,6 +12,7 @@
     "@badrap/bar-of-progress": "^0.2.2",
     "@heroicons/react": "^2.0.13",
     "date-fns": "^2.29.3",
+    "geolib": "^3.3.3",
     "mapbox-gl": "^2.11.0",
     "next": "13.0.4",
     "react": "18.2.0",

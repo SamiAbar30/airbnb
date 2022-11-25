@@ -5,6 +5,7 @@ specifiers:
   '@heroicons/react': ^2.0.13
   autoprefixer: ^10.4.13
   date-fns: ^2.29.3
+  geolib: ^3.3.3
   mapbox-gl: ^2.11.0
   next: 13.0.4
   postcss: ^8.4.19
@@ -19,6 +20,7 @@ dependencies:
   '@badrap/bar-of-progress': 0.2.2
   '@heroicons/react': 2.0.13_react@18.2.0
   date-fns: 2.29.3
+  geolib: 3.3.3
   mapbox-gl: 2.11.0
   next: 13.0.4_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -441,6 +443,10 @@ packages:
 
   /geojson-vt/3.2.1:
     resolution: {integrity: sha512-EvGQQi/zPrDA6zr6BnJD/YhwAkBP8nnJ9emh3EnHQKVMfg/MRVtPbMYdgVy/IaEmn4UfagD2a6fafPDL5hbtwg==}
+    dev: false
+
+  /geolib/3.3.3:
+    resolution: {integrity: sha512-YO704pzdB/8QQekQuDmFD5uv5RAwAf4rOUPdcMhdEOz+HoPWD0sC7Qqdwb+LAvwIjXVRawx0QgZlocKYh8PFOQ==}
     dev: false
 
   /get-stream/6.0.1:

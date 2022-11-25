@@ -52,8 +52,8 @@ function index({ searchResults }) {
 						)}
 					</div>
 				</section>
-				<section className='hidden xl:inline-flex'>
-					<MapAside />
+				<section className='hidden lg:inline-flex lg:min-w-[600px]'>
+					<MapAside searchResults={searchResults} />
 				</section>
 			</main>
 			<Footer />
@@ -67,9 +67,11 @@ export async function getServerSideProps() {
 	const searchResults = await fetch('https://www.jsonkeeper.com/b/5NPS').then(
 		(res) => res.json(),
 	);
+	
+
 	return {
 		props: {
-			searchResults,
+			searchResults
 		},
 	};
 }
